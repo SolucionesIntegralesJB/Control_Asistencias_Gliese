@@ -1,0 +1,1135 @@
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 7
+    [id_payment_type] => 4
+    [proof_series] => 23123
+    [voucher_series] => 123212
+    [date_expiration] => 2025-04-19T17:17
+    [number_installments] => 11
+    [value_installment] => 1212
+    [productos] => Array
+        (
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 7
+    [id_payment_type] => 4
+    [proof_series] => 23123
+    [voucher_series] => 123212
+    [date_expiration] => 2025-04-19T17:17
+    [number_installments] => 11
+    [value_installment] => 1212
+    [productos] => Array
+        (
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 2
+    [id_voucher_type] => 10
+    [id_payment_type] => 2
+    [proof_series] => 12345
+    [voucher_series] => 123456
+    [date_expiration] => 2025-04-23T20:00
+    [number_installments] => 1234
+    [value_installment] => 1234
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 1
+                    [unit_price] => 4850
+                    [subtotal] => 4850
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 6
+    [id_payment_type] => 3
+    [proof_series] => 12345
+    [voucher_series] => 123456
+    [date_expiration] => 2025-04-17T23:09
+    [number_installments] => 1234
+    [value_installment] => 1234
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 2
+                    [unit_price] => 4850
+                    [subtotal] => 9700
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 2
+    [id_voucher_type] => 9
+    [id_payment_type] => 3
+    [proof_series] => 12345
+    [voucher_series] => 123456
+    [date_expiration] => 2025-04-30T23:32
+    [number_installments] => 1234
+    [value_installment] => 1234
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 2
+    [proof_series] => 456456456
+    [voucher_series] => 4545646
+    [date_expiration] => 2025-04-11T23:40
+    [number_installments] => 41564564
+    [value_installment] => 4465465
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 2
+    [proof_series] => 456456456
+    [voucher_series] => 4545646
+    [date_expiration] => 2025-04-11T23:40
+    [number_installments] => 41564564
+    [value_installment] => 4465465
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 2
+    [proof_series] => 456456456
+    [voucher_series] => 4545646
+    [date_expiration] => 2025-04-11T23:40
+    [number_installments] => 44
+    [value_installment] => 4465465
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 2
+    [proof_series] => 456456456
+    [voucher_series] => 4545646
+    [date_expiration] => 2025-04-11T23:40
+    [number_installments] => 4
+    [value_installment] => 4
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 2
+    [id_user] => 24
+    [id_voucher_type] => 9
+    [id_payment_type] => 1
+    [proof_series] => 45645
+    [voucher_series] => 54564
+    [date_expiration] => 2025-04-10T23:43
+    [number_installments] => 1
+    [value_installment] => 4
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 2
+    [id_user] => 2
+    [id_voucher_type] => 9
+    [id_payment_type] => 2
+    [proof_series] => 32432
+    [voucher_series] => 2423
+    [date_expiration] => 2025-04-12T00:16
+    [number_installments] => 2
+    [value_installment] => 3
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 2
+    [id_user] => 2
+    [id_voucher_type] => 10
+    [id_payment_type] => 3
+    [proof_series] => 5456
+    [voucher_series] => 4564
+    [date_expiration] => 2025-04-10T00:22
+    [number_installments] => 4
+    [value_installment] => 4
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:35
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 5
+                    [unit_price] => 100
+                    [subtotal] => 500
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:36
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:36
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:36
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:36
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:40
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:40
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 5
+                    [unit_price] => 100
+                    [subtotal] => 500
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 1
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:40
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 5
+                    [unit_price] => 100
+                    [subtotal] => 500
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 0
+    [id_user] => 2
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:40
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 5
+                    [unit_price] => 100
+                    [subtotal] => 500
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 2
+    [id_voucher_type] => 10
+    [id_payment_type] => 1
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:40
+    [number_installments] => 1
+    [value_installment] => 1
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 4
+                    [unit_price] => 4850
+                    [subtotal] => 19400
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 5
+                    [unit_price] => 100
+                    [subtotal] => 500
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 2
+                    [unit_price] => 120
+                    [subtotal] => 240
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 18
+                    [unit_price] => 150
+                    [subtotal] => 2700
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 5
+                    [unit_price] => 3000
+                    [subtotal] => 15000
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 2
+    [id_voucher_type] => 9
+    [id_payment_type] => 3
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T05:44
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 19
+                    [quantity] => 1
+                    [unit_price] => 4850
+                    [subtotal] => 4850
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 1
+                    [unit_price] => 3000
+                    [subtotal] => 3000
+                )
+
+            [4] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 8
+    [id_user] => 24
+    [id_voucher_type] => 10
+    [id_payment_type] => 3
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 1
+                    [unit_price] => 3000
+                    [subtotal] => 3000
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 8
+    [id_user] => 24
+    [id_voucher_type] => 10
+    [id_payment_type] => 3
+    [proof_series] => 1234
+    [voucher_series] => 1234
+    [date_expiration] => 2025-08-08T11:48
+    [number_installments] => 1
+    [value_installment] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 20
+                    [quantity] => 1
+                    [unit_price] => 3000
+                    [subtotal] => 3000
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 18
+                    [quantity] => 1
+                    [unit_price] => 150
+                    [subtotal] => 150
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 15
+                    [quantity] => 1
+                    [unit_price] => 100
+                    [subtotal] => 100
+                )
+
+            [3] => Array
+                (
+                    [id_product] => 14
+                    [quantity] => 1
+                    [unit_price] => 120
+                    [subtotal] => 120
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 3
+    [id_voucher_type] => 2
+    [id_payment_type] => 1
+    [proof_series] => PS001
+    [voucher_series] => VS999
+    [date_expiration] => 46022
+    [number_installments] => 3
+    [value_installment] => 100.5
+    [date_issue] => 2025-08-08
+    [igv] => 0.18
+    [full_purchase] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 4
+                    [stock] => 10
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 5
+                    [stock] => 8
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 7
+                    [stock] => 12
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 3
+    [id_voucher_type] => 2
+    [id_payment_type] => 1
+    [proof_series] => PS001
+    [voucher_series] => VS999
+    [date_expiration] => 46022
+    [number_installments] => 3
+    [value_installment] => 100.5
+    [date_issue] => 2025-08-08
+    [igv] => 0.18
+    [full_purchase] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 4
+                    [stock] => 10
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 5
+                    [stock] => 8
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 7
+                    [stock] => 12
+                )
+
+        )
+
+)
+Array
+(
+    [id_person] => 1
+    [id_user] => 3
+    [id_voucher_type] => 2
+    [id_payment_type] => 1
+    [proof_series] => PS001
+    [voucher_series] => VS999
+    [date_expiration] => 2025-12-08
+    [number_installments] => 12
+    [value_installment] => 100.5
+    [date_issue] => 2025-08-08
+    [igv] => 0.18
+    [full_purchase] => 0
+    [productos] => Array
+        (
+            [0] => Array
+                (
+                    [id_product] => 4
+                    [stock] => 10
+                )
+
+            [1] => Array
+                (
+                    [id_product] => 5
+                    [stock] => 8
+                )
+
+            [2] => Array
+                (
+                    [id_product] => 7
+                    [stock] => 12
+                )
+
+        )
+
+)
