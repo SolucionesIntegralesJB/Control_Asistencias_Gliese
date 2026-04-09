@@ -28,7 +28,7 @@ class Bootstrap {
             }
             
         } else {
-            throw new Exception('Not found');
+            throw new Exception('Not found: ' . $route_controller);
         }
     }
 }

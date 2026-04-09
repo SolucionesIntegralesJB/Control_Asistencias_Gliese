@@ -13,9 +13,13 @@ class Request {
         if (isset($_GET['url'])) {
             // --
             $url = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);
+            $url = urldecode($url);
             $url = explode('/', $url);
             if (is_array($url)) {
-                $url = array_filter($url);
+                $url = array_map('trim', $url);
+                $url = array_filter($url, static function ($segment) {
+                    return $segment !== '';
+                });
             }
             // --
             $this->controller = array_shift($url);
@@ -26,11 +30,15 @@ class Request {
         // --
         if (!$this->controller) {
             $this->controller = DEFAULT_CONTROLLER;
+        } else {
+            $this->controller = trim($this->controller);
         }
 
         // --
         if (!$this->method) {
             $this->method = 'index';
+        } else {
+            $this->method = trim($this->method);
         }
 
         // --

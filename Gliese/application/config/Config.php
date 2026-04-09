@@ -8,7 +8,8 @@ if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
     $protocol = "http://"; 
 }
 // --
-$base_url =  $protocol . $_SERVER['HTTP_HOST'] .  '/Gliese/';
+$base_path = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
+$base_url = $protocol . $_SERVER['HTTP_HOST'] . ($base_path ? $base_path . '/' : '/');
 
 // --
 define('BASE_URL', $base_url);
