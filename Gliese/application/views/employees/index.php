@@ -42,9 +42,6 @@
                                             <th>Celular</th>
                                             <th>Direccion</th>
                                             <th>Email</th>
-                                            <th>Área</th>
-                                            <th>Cargo</th>
-                                            <th>Sueldo</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>

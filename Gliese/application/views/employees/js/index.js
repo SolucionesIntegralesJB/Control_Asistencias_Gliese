@@ -30,9 +30,6 @@ function load_datatable() {
       { data: "phone" },
       { data: "address" },
       { data: "email" },
-      { data: "work_area" },
-      { data: "position" },
-      { data: "salary" },
       {
         class: "text-center",
         render: function (data, type, row, meta) {
@@ -55,7 +52,7 @@ function load_datatable() {
     ],
     order: [[0, "asc"]],
     dom: functions.head_datatable(),
-    buttons: functions.custom_buttons_datatable([9], "#create_employees_modal"), // -- Columnas para exportar PDF (acciones excluida)
+    buttons: functions.custom_buttons_datatable([6], "#create_employees_modal"), // -- Columnas para exportar PDF (acciones excluida)
     language: {
       url: BASE_URL + "public/assets/json/languaje-es.json",
     },

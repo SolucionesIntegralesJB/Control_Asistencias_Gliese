@@ -92,3 +92,15 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE job_role (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    job_role VARCHAR(100) NOT NULL
+);
+
+INSERT INTO job_role (job_role) VALUES 
+('Software Engineer'),
+('Data Analyst'),
+('Project Manager'),
+('UX Designer'),
+('DevOps Specialist');
