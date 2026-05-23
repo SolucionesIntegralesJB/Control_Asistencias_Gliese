@@ -1,0 +1,79 @@
+[22-May-2026 21:44:26 America/Lima] DEBUG: start_shift() iniciado
+[22-May-2026 21:44:26 America/Lima] DEBUG: Método de solicitud: POST
+[22-May-2026 21:44:26 America/Lima] DEBUG: Input recibido: Array
+(
+    [job_role_id] => 2
+    [campus_id] => 4
+)
+
+[22-May-2026 21:44:26 America/Lima] DEBUG: Cargando modelos...
+[22-May-2026 21:44:26 America/Lima] DEBUG: user_id=2, shift_date=2026-05-22, current_time=21:44:26
+[22-May-2026 21:44:26 America/Lima] DEBUG: Verificando turno existente...
+[22-May-2026 21:44:26 America/Lima] DEBUG: Resultado verificación: Array
+(
+    [status] => ERROR
+    [result] => Array
+        (
+        )
+
+)
+
+[22-May-2026 21:44:26 America/Lima] DEBUG: Creando turno con bind: Array
+(
+    [user_id] => 2
+    [job_role_id] => 2
+    [campus_id] => 4
+    [shift_date] => 2026-05-22
+    [scheduled_start] => 21:44:26
+    [scheduled_end] => 05:44:26
+    [status] => pending
+)
+
+[22-May-2026 21:44:26 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Iniciado
+[22-May-2026 21:44:26 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Bind: Array
+(
+    [user_id] => 2
+    [job_role_id] => 2
+    [campus_id] => 4
+    [shift_date] => 2026-05-22
+    [scheduled_start] => 21:44:26
+    [scheduled_end] => 05:44:26
+    [status] => pending
+)
+
+[22-May-2026 21:44:26 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - SQL: INSERT INTO attendance_shifts 
+                    (user_id, job_role_id, campus_id, shift_date, scheduled_start, scheduled_end, status)
+                    VALUES 
+                    (:user_id, :job_role_id, :campus_id, :shift_date, :scheduled_start, :scheduled_end, :status)
+[22-May-2026 21:44:26 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Execute result: true
+[22-May-2026 21:44:26 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Shift ID: 1
+[22-May-2026 21:44:26 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Response: Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [shift_id] => 1
+        )
+
+)
+
+[22-May-2026 21:44:26 America/Lima] DEBUG: Respuesta create_shift: Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [shift_id] => 1
+        )
+
+)
+
+[22-May-2026 21:44:26 America/Lima] DEBUG: Turno creado con ID: 1
+[22-May-2026 21:44:26 America/Lima] DEBUG: Actualizando hora de inicio...
+[22-May-2026 21:44:26 America/Lima] DEBUG: Registrando marcación check_in...
+[22-May-2026 21:44:26 America/Lima] DEBUG: Respuesta JSON: Array
+(
+    [status] => OK
+    [msg] => Turno iniciado correctamente
+    [shift_id] => 1
+)
+
