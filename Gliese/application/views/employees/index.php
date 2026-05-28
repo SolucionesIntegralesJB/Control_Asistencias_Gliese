@@ -127,6 +127,18 @@
                                                 <input type="number" step="0.01" min="0" name="salary" class="form-control" placeholder="0.00" data-msg="" />
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div>
+                                                <label class="form-label">Contraseña (Attendance System)</label>
+                                                <input type="password" name="password" class="form-control" placeholder="Mínimo 6 caracteres" data-msg="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div>
+                                                <label class="form-label">Confirmar Contraseña</label>
+                                                <input type="password" name="password_confirm" class="form-control" placeholder="Repita la contraseña" data-msg="" />
+                                            </div>
+                                        </div>
                                         <div class="col-12 text-center">
                                             <button id="btn_create_employees" type="submit" class="btn btn-primary mt-2 me-1">Guardar</button>
                                             <button type="reset" class="btn btn-outline-secondary mt-2 reset" data-bs-dismiss="modal" aria-label="Close">
@@ -208,6 +220,18 @@
                                             <div>
                                                 <label class="form-label">Sueldo</label>
                                                 <input type="number" step="0.01" min="0" name="salary" class="form-control" placeholder="0.00" data-msg="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div>
+                                                <label class="form-label">Contraseña (Attendance System) <small class="text-muted">- Dejar vacío para mantener actual</small></label>
+                                                <input type="password" name="password" class="form-control" placeholder="Mínimo 6 caracteres" data-msg="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div>
+                                                <label class="form-label">Confirmar Contraseña</label>
+                                                <input type="password" name="password_confirm" class="form-control" placeholder="Repita la contraseña" data-msg="" />
                                             </div>
                                         </div>
                                         <input type="hidden" name="id_employees">

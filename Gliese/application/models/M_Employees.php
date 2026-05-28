@@ -100,7 +100,7 @@ class M_Employees extends Model
                     document_type_id,
                     document_number,
                     name,
-                    address, 
+                    address,
                     reference,
                     phone,
                     email,
@@ -108,9 +108,10 @@ class M_Employees extends Model
                     work_area,
                     position,
                     salary,
-                    status
-                ) 
-                VALUES 
+                    status,
+                    password
+                )
+                VALUES
                 (
                     :document_type,
                     :document_number,
@@ -123,7 +124,8 @@ class M_Employees extends Model
                     :work_area,
                     :position,
                     :salary,
-                    1
+                    1,
+                    :password
                 )';
             // --
             $stmt = $this->pdo->prepare($sql); // Preparar la consulta
@@ -150,20 +152,39 @@ class M_Employees extends Model
         // --
         try {
             // --
-            $sql = 'UPDATE employees
-                SET
-                    document_type_id = :document_type,
-                    document_number = :document_number,
-                    name = :name,
-                    address = :address,
-                    reference = :reference,
-                    phone = :phone,
-                    email = :email,
-                    work_area = :work_area,
-                    position = :position,
-                    salary = :salary,
-                    role_person_id = :role_person_id
-                WHERE id = :id_employees';
+            // Si password no es null, actualizar también password
+            if ($bind['password'] !== null) {
+                $sql = 'UPDATE employees
+                    SET
+                        document_type_id = :document_type,
+                        document_number = :document_number,
+                        name = :name,
+                        address = :address,
+                        reference = :reference,
+                        phone = :phone,
+                        email = :email,
+                        work_area = :work_area,
+                        position = :position,
+                        salary = :salary,
+                        role_person_id = :role_person_id,
+                        password = :password
+                    WHERE id = :id_employees';
+            } else {
+                $sql = 'UPDATE employees
+                    SET
+                        document_type_id = :document_type,
+                        document_number = :document_number,
+                        name = :name,
+                        address = :address,
+                        reference = :reference,
+                        phone = :phone,
+                        email = :email,
+                        work_area = :work_area,
+                        position = :position,
+                        salary = :salary,
+                        role_person_id = :role_person_id
+                    WHERE id = :id_employees';
+            }
             // --
             $result = $this->pdo->perform($sql, $bind);
             // --

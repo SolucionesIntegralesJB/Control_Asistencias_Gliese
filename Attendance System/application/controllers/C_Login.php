@@ -20,38 +20,39 @@ class C_Login extends Controller {
                 $input = filter_input_array(INPUT_POST);
             }
             
-            if (isset($input['user']) && isset($input['password'])) {
+            if (isset($input['email']) && isset($input['password'])) {
                 $obj_login = $this->load_model('Login');
-                $user = $this->functions->clean_string(trim($input['user']));
-                $password = $this->functions->encrypt_password($input['password']);
-                
+                $email = $this->functions->clean_string(trim($input['email']));
+                $password = $input['password']; // Contraseña en texto plano para password_verify()
+
                 $bind = array(
-                    'user' => $user,
+                    'email' => $email,
                     'password' => $password
                 );
-                
+
                 $response = $obj_login->get_user($bind);
                 
                 if ($response['status'] === 'OK' && !empty($response['result'])) {
-                    $result_user = $response['result'][0];
+                    $result_employee = $response['result'][0];
                     
                     $this->session->set('is_logged', true);
-                    $this->session->set('user_id', $result_user['id']);
-                    $this->session->set('user_name', $result_user['first_name']);
-                    $this->session->set('user_last_name', $result_user['last_name']);
-                    $this->session->set('user_email', $result_user['email']);
-                    $this->session->set('user_role', $result_user['id_role']);
+                    $this->session->set('employee_id', $result_employee['id']);
+                    $this->session->set('employee_name', $result_employee['name']);
+                    $this->session->set('employee_email', $result_employee['email']);
+                    $this->session->set('employee_position', $result_employee['position']);
+                    $this->session->set('employee_work_area', $result_employee['work_area']);
+                    $this->session->set('employee_role_id', $result_employee['role_person_id']);
                     $this->session->set('login_time', time());
                     
                     $json = array(
                         'status' => 'OK',
-                        'msg' => 'Bienvenido(a) ' . $result_user['first_name'],
+                        'msg' => 'Bienvenido(a) ' . $result_employee['name'],
                         'redirect' => BASE_URL . 'Dashboard'
                     );
                 } else {
                     $json = array(
                         'status' => 'ERROR',
-                        'msg' => 'Credenciales incorrectas o usuario inactivo'
+                        'msg' => 'Credenciales incorrectas o empleado inactivo'
                     );
                 }
             } else {

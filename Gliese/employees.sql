@@ -47,7 +47,11 @@ CREATE TABLE `employees` (
   `position` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `salary` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+-- Agregar campos de autenticación a la tabla employees
+ALTER TABLE `employees`
+  ADD COLUMN `password` VARCHAR(255) NULL COMMENT 'Hash de contraseña (bcrypt)' AFTER `email`,
+  ADD COLUMN `last_login` TIMESTAMP NULL DEFAULT NULL COMMENT 'Último acceso exitoso' AFTER `password`,
+  ADD INDEX `idx_email_status` (`email`, `status`);
 --
 -- Volcado de datos para la tabla `employees`
 --

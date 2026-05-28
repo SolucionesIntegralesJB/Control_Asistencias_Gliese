@@ -8,42 +8,42 @@
 -- Almacena información de cada turno de trabajo diario
 CREATE TABLE IF NOT EXISTS `attendance_shifts` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL COMMENT 'ID del usuario (FK a user)',
+  `employee_id` BIGINT NOT NULL COMMENT 'ID del empleado (FK a employees.id - BIGINT)',
   `job_role_id` INT NOT NULL COMMENT 'ID del rol/trabajo (FK a job_role)',
   `campus_id` INT NOT NULL COMMENT 'ID del campus (FK a campus)',
   `shift_date` DATE NOT NULL COMMENT 'Fecha del turno',
-  
+
   -- Horarios programados
   `scheduled_start` TIME NOT NULL COMMENT 'Hora programada de inicio',
   `scheduled_end` TIME NOT NULL COMMENT 'Hora programada de fin (8 horas)',
-  
+
   -- Horarios reales
   `actual_start` TIME NULL COMMENT 'Hora real de inicio (check-in)',
   `actual_end` TIME NULL COMMENT 'Hora real de fin (check-out)',
-  
+
   -- Break (único por turno)
   `break_start` TIME NULL COMMENT 'Hora inicio del break',
   `break_end` TIME NULL COMMENT 'Hora fin del break',
   `break_duration` INT DEFAULT 0 COMMENT 'Duración del break en minutos',
-  
+
   -- Cálculos de horas
   `total_worked_minutes` INT DEFAULT 0 COMMENT 'Total minutos trabajados',
   `regular_hours` DECIMAL(4,2) DEFAULT 0.00 COMMENT 'Horas regulares (max 8)',
   `overtime_hours` DECIMAL(4,2) DEFAULT 0.00 COMMENT 'Horas extra (excedente de 8)',
-  
+
   -- Estado y metadatos
   `status` ENUM('pending', 'in_progress', 'completed', 'cancelled') DEFAULT 'pending' COMMENT 'Estado del turno',
   `notes` TEXT NULL COMMENT 'Notas adicionales',
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  
+
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_user_shift_date` (`user_id`, `shift_date`) COMMENT 'Un turno por usuario por día',
-  KEY `idx_user_id` (`user_id`),
+  UNIQUE KEY `unique_employee_shift_date` (`employee_id`, `shift_date`) COMMENT 'Un turno por empleado por día',
+  KEY `idx_employee_id` (`employee_id`),
   KEY `idx_shift_date` (`shift_date`),
   KEY `idx_status` (`status`),
-  
-  CONSTRAINT `fk_shifts_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+
+  CONSTRAINT `fk_shifts_employee` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_shifts_job_role` FOREIGN KEY (`job_role_id`) REFERENCES `job_role` (`id`) ON DELETE RESTRICT,
   CONSTRAINT `fk_shifts_campus` FOREIGN KEY (`campus_id`) REFERENCES `campus` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Turnos de trabajo diarios';
@@ -101,8 +101,8 @@ ON DUPLICATE KEY UPDATE updated_at = CURRENT_TIMESTAMP;
 -- ============================================
 
 -- Índices compuestos para consultas frecuentes
-ALTER TABLE `attendance_shifts` 
-ADD INDEX `idx_user_date_status` (`user_id`, `shift_date`, `status`),
+ALTER TABLE `attendance_shifts`
+ADD INDEX `idx_employee_date_status` (`employee_id`, `shift_date`, `status`),
 ADD INDEX `idx_campus_date` (`campus_id`, `shift_date`);
 
 ALTER TABLE `attendance_records`
@@ -113,13 +113,14 @@ ADD INDEX `idx_shift_type_time` (`shift_id`, `record_type`, `record_time`);
 -- VISTAS ÚTILES
 -- ============================================
 
--- Vista: Resumen de turnos por usuario
+-- Vista: Resumen de turnos por empleado
 CREATE OR REPLACE VIEW `v_shift_summary` AS
-SELECT 
+SELECT
     s.id,
-    s.user_id,
-    u.first_name,
-    u.last_name,
+    s.employee_id,
+    e.name AS employee_name,
+    e.email AS employee_email,
+    e.position,
     s.job_role_id,
     jr.job_role,
     s.campus_id,
@@ -138,19 +139,19 @@ SELECT
     s.status,
     s.notes
 FROM attendance_shifts s
-LEFT JOIN user u ON s.user_id = u.id
+LEFT JOIN employees e ON s.employee_id = e.id
 LEFT JOIN job_role jr ON s.job_role_id = jr.id
 LEFT JOIN campus c ON s.campus_id = c.id;
 
 
 -- Vista: Historial de marcaciones
 CREATE OR REPLACE VIEW `v_attendance_history` AS
-SELECT 
+SELECT
     r.id,
     r.shift_id,
-    s.user_id,
-    u.first_name,
-    u.last_name,
+    s.employee_id,
+    e.name AS employee_name,
+    e.email AS employee_email,
     s.shift_date,
     r.record_type,
     r.record_time,
@@ -159,5 +160,5 @@ SELECT
     r.notes
 FROM attendance_records r
 LEFT JOIN attendance_shifts s ON r.shift_id = s.id
-LEFT JOIN user u ON s.user_id = u.id
+LEFT JOIN employees e ON s.employee_id = e.id
 ORDER BY r.record_time DESC;

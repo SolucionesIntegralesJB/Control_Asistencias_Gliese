@@ -15,8 +15,8 @@
             
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="login-user">Usuario</label>
-                    <input type="text" id="login-user" name="user" placeholder="Ingrese su usuario" required autofocus>
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" placeholder="Ingrese su email" required autofocus>
                 </div>
                 
                 <div class="form-group">
@@ -35,12 +35,12 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const user = document.getElementById('login-user').value.trim();
+            const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
             const btn = document.getElementById('login-btn');
             const messageDiv = document.getElementById('login-message');
             
-            if (!user || !password) {
+            if (!email || !password) {
                 showMessage('Por favor complete todos los campos', 'error');
                 return;
             }
@@ -50,7 +50,7 @@
             messageDiv.style.display = 'none';
             
             const formData = new FormData();
-            formData.append('user', user);
+            formData.append('email', email);
             formData.append('password', password);
             
             fetch('<?php echo BASE_URL; ?>Login/login', {

@@ -1,8 +1,10 @@
 <div class="container">
     <div class="dashboard-header">
-        <h1>Bienvenido, <?php echo htmlspecialchars($user_name); ?> <?php echo htmlspecialchars($user_last_name); ?></h1>
+        <h1>Bienvenido, <?php echo htmlspecialchars($employee_name); ?></h1>
         <p>Sistema de Control de Asistencias</p>
-        <p class="mt-20"><strong>Email:</strong> <?php echo htmlspecialchars($user_email); ?></p>
+        <p class="mt-20"><strong>Email:</strong> <?php echo htmlspecialchars($employee_email); ?></p>
+        <p><strong>Cargo:</strong> <?php echo htmlspecialchars($employee_position); ?></p>
+        <p><strong>Área:</strong> <?php echo htmlspecialchars($employee_work_area); ?></p>
         <p><strong>Sesión iniciada:</strong> <?php echo date('d/m/Y H:i:s', $login_time); ?></p>
     </div>
     

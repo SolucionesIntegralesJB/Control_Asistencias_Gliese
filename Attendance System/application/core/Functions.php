@@ -3,9 +3,9 @@
 class Functions {
     
     public function encrypt_password($string) {
-        $salt = '$6$rOuNdS=75fd3@15f%9f&ds8$s@l/$';
-        $data = bin2hex(base64_encode(md5(crypt($string, $salt))));
-        return $data;
+        // Usar password_hash para hashing de contraseñas (buena práctica de seguridad)
+        // Este método ahora usa password_hash() estándar de PHP
+        return password_hash($string, PASSWORD_DEFAULT);
     }
 
     public function validate_session($val) {

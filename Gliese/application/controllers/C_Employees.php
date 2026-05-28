@@ -195,6 +195,34 @@ class C_Employees extends Controller
                 !empty($input['name']) &&
                 !empty($input['phone'])
             ) {
+                // Validar contraseña si se proporciona
+                $password = null;
+                if (!empty($input['password'])) {
+                    if (strlen($input['password']) < 6) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'type' => 'warning',
+                            'msg' => 'La contraseña debe tener al menos 6 caracteres.',
+                            'data' => array()
+                        );
+                        header('Content-Type: application/json');
+                        echo json_encode($json);
+                        return;
+                    }
+                    if ($input['password'] !== $input['password_confirm']) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'type' => 'warning',
+                            'msg' => 'Las contraseñas no coinciden.',
+                            'data' => array()
+                        );
+                        header('Content-Type: application/json');
+                        echo json_encode($json);
+                        return;
+                    }
+                    $password = password_hash($input['password'], PASSWORD_DEFAULT);
+                }
+
                 // --
                 $document_type = $this->functions->clean_string($input['document_type']);
                 $document_number = $this->functions->clean_string($input['document_number']);
@@ -219,7 +247,8 @@ class C_Employees extends Controller
                     'work_area' => $work_area,
                     'position' => $position,
                     'salary' => $salary,
-                    'role_person_id' => $role_person_id
+                    'role_person_id' => $role_person_id,
+                    'password' => $password
                 );
 
                 // --
@@ -309,6 +338,34 @@ class C_Employees extends Controller
                 !empty($input['name']) &&
                 !empty($input['phone'])
             ) {
+                // Validar contraseña si se proporciona
+                $password = null;
+                if (!empty($input['password'])) {
+                    if (strlen($input['password']) < 6) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'type' => 'warning',
+                            'msg' => 'La contraseña debe tener al menos 6 caracteres.',
+                            'data' => array()
+                        );
+                        header('Content-Type: application/json');
+                        echo json_encode($json);
+                        return;
+                    }
+                    if ($input['password'] !== $input['password_confirm']) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'type' => 'warning',
+                            'msg' => 'Las contraseñas no coinciden.',
+                            'data' => array()
+                        );
+                        header('Content-Type: application/json');
+                        echo json_encode($json);
+                        return;
+                    }
+                    $password = password_hash($input['password'], PASSWORD_DEFAULT);
+                }
+
                 // --
                 $id_employees = $this->functions->clean_string($input['id_employees']);
                 $document_type = $this->functions->clean_string($input['document_type']);
@@ -335,7 +392,8 @@ class C_Employees extends Controller
                     'work_area' => $work_area,
                     'position' => $position,
                     'salary' => $salary,
-                    'role_person_id' => $role_person_id
+                    'role_person_id' => $role_person_id,
+                    'password' => $password
                 );
                 // --
                 $obj = $this->load_model('Employees');

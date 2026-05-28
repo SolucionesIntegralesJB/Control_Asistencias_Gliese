@@ -18,9 +18,9 @@ class M_Attendance_Shifts extends Model {
         
         try {
             $sql = 'INSERT INTO attendance_shifts 
-                    (user_id, job_role_id, campus_id, shift_date, scheduled_start, scheduled_end, status)
+                    (employee_id, job_role_id, campus_id, shift_date, scheduled_start, scheduled_end, status)
                     VALUES 
-                    (:user_id, :job_role_id, :campus_id, :shift_date, :scheduled_start, :scheduled_end, :status)';
+                    (:employee_id, :job_role_id, :campus_id, :shift_date, :scheduled_start, :scheduled_end, :status)';
             
             error_log("DEBUG M_Attendance_Shifts::create_shift() - SQL: " . $sql);
             
@@ -48,15 +48,24 @@ class M_Attendance_Shifts extends Model {
         return $response;
     }
 
-    public function get_shift_by_user_date($bind) {
+    public function get_shift_by_employee_date($bind) {
         try {
-            $sql = 'SELECT * FROM attendance_shifts 
-                    WHERE user_id = :user_id AND shift_date = :shift_date';
-            
+            $sql = 'SELECT 
+                    id, employee_id, job_role_id, campus_id, shift_date,
+                    scheduled_start, scheduled_end,
+                    CONCAT(shift_date, " ", actual_start) as actual_start,
+                    CONCAT(shift_date, " ", actual_end) as actual_end,
+                    CONCAT(shift_date, " ", break_start) as break_start,
+                    CONCAT(shift_date, " ", break_end) as break_end,
+                    break_duration, total_worked_minutes, regular_hours, overtime_hours,
+                    status, notes, created_at, updated_at
+                    FROM attendance_shifts
+                    WHERE employee_id = :employee_id AND shift_date = :shift_date';
+
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($bind);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             if ($result) {
                 $response = array('status' => 'OK', 'result' => $result);
             } else {
@@ -65,7 +74,7 @@ class M_Attendance_Shifts extends Model {
         } catch (PDOException $e) {
             $response = array('status' => 'EXCEPTION', 'result' => $e->getMessage());
         }
-        
+
         return $response;
     }
 
@@ -177,19 +186,28 @@ class M_Attendance_Shifts extends Model {
         return $response;
     }
 
-    public function get_user_shifts($bind) {
+    public function get_employee_shifts($bind) {
         try {
-            $sql = 'SELECT s.*, jr.job_role, c.description as campus_name 
+            $sql = 'SELECT 
+                    s.id, s.employee_id, s.job_role_id, s.campus_id, s.shift_date,
+                    s.scheduled_start, s.scheduled_end,
+                    CONCAT(s.shift_date, " ", s.actual_start) as actual_start,
+                    CONCAT(s.shift_date, " ", s.actual_end) as actual_end,
+                    CONCAT(s.shift_date, " ", s.break_start) as break_start,
+                    CONCAT(s.shift_date, " ", s.break_end) as break_end,
+                    s.break_duration, s.total_worked_minutes, s.regular_hours, s.overtime_hours,
+                    s.status, s.notes, s.created_at, s.updated_at,
+                    jr.job_role, c.description as campus_name
                     FROM attendance_shifts s
                     LEFT JOIN job_role jr ON s.job_role_id = jr.id
                     LEFT JOIN campus c ON s.campus_id = c.id
-                    WHERE s.user_id = :user_id
+                    WHERE s.employee_id = :employee_id
                     ORDER BY s.shift_date DESC';
-            
+
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($bind);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+
             if ($result) {
                 $response = array('status' => 'OK', 'result' => $result);
             } else {
@@ -198,14 +216,23 @@ class M_Attendance_Shifts extends Model {
         } catch (PDOException $e) {
             $response = array('status' => 'EXCEPTION', 'result' => $e->getMessage());
         }
-        
+
         return $response;
     }
 
     public function get_current_active_shift($bind) {
         try {
-            $sql = 'SELECT * FROM attendance_shifts 
-                    WHERE user_id = :user_id 
+            $sql = 'SELECT 
+                    id, employee_id, job_role_id, campus_id, shift_date,
+                    scheduled_start, scheduled_end,
+                    CONCAT(shift_date, " ", actual_start) as actual_start,
+                    CONCAT(shift_date, " ", actual_end) as actual_end,
+                    CONCAT(shift_date, " ", break_start) as break_start,
+                    CONCAT(shift_date, " ", break_end) as break_end,
+                    break_duration, total_worked_minutes, regular_hours, overtime_hours,
+                    status, notes, created_at, updated_at
+                    FROM attendance_shifts 
+                    WHERE employee_id = :employee_id 
                     AND shift_date = CURDATE()';
             
             $stmt = $this->pdo->prepare($sql);
@@ -224,52 +251,52 @@ class M_Attendance_Shifts extends Model {
         return $response;
     }
 
-    public function get_user_statistics($bind) {
+    public function get_employee_statistics($bind) {
         try {
-            $user_id = $bind['user_id'];
-            
+            $employee_id = $bind['employee_id'];
+
             // Estadísticas del día
-            $sql_day = 'SELECT 
+            $sql_day = 'SELECT
                         COALESCE(SUM(regular_hours), 0) as day_hours,
                         COALESCE(SUM(overtime_hours), 0) as day_overtime,
                         COALESCE(SUM(break_duration), 0) as day_break_minutes
-                        FROM attendance_shifts 
-                        WHERE user_id = :user_id 
+                        FROM attendance_shifts
+                        WHERE employee_id = :employee_id
                         AND shift_date = CURDATE()
                         AND status = "completed"';
-            
+
             $stmt = $this->pdo->prepare($sql_day);
-            $stmt->execute(array('user_id' => $user_id));
+            $stmt->execute(array('employee_id' => $employee_id));
             $day_stats = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             // Estadísticas de la semana
-            $sql_week = 'SELECT 
+            $sql_week = 'SELECT
                          COALESCE(SUM(regular_hours), 0) as week_hours,
                          COALESCE(SUM(overtime_hours), 0) as week_overtime,
                          COALESCE(SUM(break_duration), 0) as week_break_minutes
-                         FROM attendance_shifts 
-                         WHERE user_id = :user_id 
+                         FROM attendance_shifts
+                         WHERE employee_id = :employee_id
                          AND shift_date >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
                          AND status = "completed"';
-            
+
             $stmt = $this->pdo->prepare($sql_week);
-            $stmt->execute(array('user_id' => $user_id));
+            $stmt->execute(array('employee_id' => $employee_id));
             $week_stats = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             // Estadísticas del mes
-            $sql_month = 'SELECT 
+            $sql_month = 'SELECT
                           COALESCE(SUM(regular_hours), 0) as month_hours,
                           COALESCE(SUM(overtime_hours), 0) as month_overtime,
                           COALESCE(SUM(break_duration), 0) as month_break_minutes
-                          FROM attendance_shifts 
-                          WHERE user_id = :user_id 
+                          FROM attendance_shifts
+                          WHERE employee_id = :employee_id
                           AND shift_date >= DATE_FORMAT(CURDATE(), \'%Y-%m-01\')
                           AND status = "completed"';
-            
+
             $stmt = $this->pdo->prepare($sql_month);
-            $stmt->execute(array('user_id' => $user_id));
+            $stmt->execute(array('employee_id' => $employee_id));
             $month_stats = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             $response = array(
                 'status' => 'OK',
                 'result' => array(
@@ -281,7 +308,7 @@ class M_Attendance_Shifts extends Model {
         } catch (PDOException $e) {
             $response = array('status' => 'EXCEPTION', 'result' => $e->getMessage());
         }
-        
+
         return $response;
     }
 }
