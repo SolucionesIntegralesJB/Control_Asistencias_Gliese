@@ -13,7 +13,7 @@ class M_Attendance extends Model
     {
         // --
         try {
-            // -- Build base query (simplified to avoid potential table issues)
+            // -- Build base query with job_role and campus joins
             $sql = 'SELECT
                     s.id,
                     s.employee_id,
@@ -34,9 +34,16 @@ class M_Attendance extends Model
                     s.regular_payment,
                     s.overtime_payment,
                     s.total_payment,
-                    s.status
+                    s.status,
+                    s.job_role_id,
+                    jr.job_role AS job_role_name,
+                    s.campus_id,
+                    c.description AS campus_name,
+                    s.work_description
                 FROM attendance_shifts s
                 LEFT JOIN employees e ON s.employee_id = e.id
+                LEFT JOIN job_role jr ON s.job_role_id = jr.id
+                LEFT JOIN campus c ON s.campus_id = c.id
                 WHERE 1=1';
 
             // -- Apply filters

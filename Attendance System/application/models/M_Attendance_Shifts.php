@@ -143,17 +143,17 @@ class M_Attendance_Shifts extends Model {
 
     public function update_shift_end($bind) {
         try {
-            $sql = 'UPDATE attendance_shifts 
-                    SET actual_end = :actual_end, 
+            $sql = 'UPDATE attendance_shifts
+                    SET actual_end = :actual_end,
                         total_worked_minutes = :total_worked_minutes,
                         regular_hours = :regular_hours,
                         overtime_hours = :overtime_hours,
                         status = :status
                     WHERE id = :shift_id';
-            
+
             $stmt = $this->pdo->prepare($sql);
             $result = $stmt->execute($bind);
-            
+
             if ($result) {
                 $response = array('status' => 'OK', 'result' => array());
             } else {
@@ -162,7 +162,92 @@ class M_Attendance_Shifts extends Model {
         } catch (PDOException $e) {
             $response = array('status' => 'EXCEPTION', 'result' => $e->getMessage());
         }
-        
+
+        return $response;
+    }
+
+    // -- Recalculate shift data (hours) - centralized method
+    public function recalculate_shift_data($shift_id) {
+        try {
+            // -- Get shift data
+            $sql = 'SELECT * FROM attendance_shifts WHERE id = :id';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(array('id' => $shift_id));
+            $shift = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$shift) {
+                return array('status' => 'ERROR', 'result' => array('msg' => 'Shift not found'));
+            }
+
+            // -- Calculate total worked minutes
+            $total_worked_minutes = 0;
+            $break_duration = isset($shift['break_duration']) ? $shift['break_duration'] : 0;
+
+            if ($shift['actual_start'] && $shift['actual_end']) {
+                // -- Parse times (actual_start is DATETIME, actual_end is TIME)
+                $start = strtotime($shift['actual_start']);
+                $shift_date = date('Y-m-d', strtotime($shift['actual_start']));
+                $end = strtotime($shift_date . ' ' . $shift['actual_end']);
+
+                // -- Handle overnight shifts
+                if ($end < $start) {
+                    $end += 86400; // Add 24 hours
+                }
+
+                $total_worked_minutes = round(($end - $start) / 60) - $break_duration;
+            }
+
+            // -- Update break duration
+            $break_duration = max(0, $break_duration);
+            $total_worked_minutes = max(0, $total_worked_minutes);
+
+            // -- Calculate regular and overtime hours (8 hours = 480 minutes)
+            $regular_hours = 0;
+            $overtime_hours = 0;
+
+            if ($total_worked_minutes > 0) {
+                if ($total_worked_minutes <= 480) {
+                    $regular_hours = $total_worked_minutes / 60;
+                } else {
+                    $regular_hours = 8;
+                    $overtime_hours = ($total_worked_minutes - 480) / 60;
+                }
+            }
+
+            // -- Update shift with calculated values
+            $sql = 'UPDATE attendance_shifts
+                SET
+                    break_duration = :break_duration,
+                    total_worked_minutes = :total_worked_minutes,
+                    regular_hours = :regular_hours,
+                    overtime_hours = :overtime_hours
+                WHERE id = :id';
+
+            $update_bind = array(
+                'id' => $shift_id,
+                'break_duration' => $break_duration,
+                'total_worked_minutes' => $total_worked_minutes,
+                'regular_hours' => number_format($regular_hours, 2),
+                'overtime_hours' => number_format($overtime_hours, 2)
+            );
+
+            $stmt = $this->pdo->prepare($sql);
+            $result = $stmt->execute($update_bind);
+
+            if ($result) {
+                $response = array('status' => 'OK', 'result' => array(
+                    'break_duration' => $break_duration,
+                    'total_worked_minutes' => $total_worked_minutes,
+                    'regular_hours' => $regular_hours,
+                    'overtime_hours' => $overtime_hours
+                ));
+            } else {
+                $response = array('status' => 'ERROR', 'result' => array('msg' => 'Failed to update shift'));
+            }
+        } catch (PDOException $e) {
+            $response = array('status' => 'EXCEPTION', 'result' => $e);
+        }
+
         return $response;
     }
 

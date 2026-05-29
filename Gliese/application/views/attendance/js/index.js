@@ -73,6 +73,26 @@ function load_datatable() {
         }
       },
       {
+        data: "job_role_name",
+        render: function(data) {
+          return data || '-';
+        }
+      },
+      {
+        data: "campus_name",
+        render: function(data) {
+          return data || '-';
+        }
+      },
+      {
+        data: "work_description",
+        render: function(data) {
+          if (!data) return '-';
+          // Truncate if longer than 50 characters
+          return data.length > 50 ? data.substring(0, 50) + '...' : data;
+        }
+      },
+      {
         data: "actual_start",
         render: function(data) {
           return data ? data.substring(0, 5) : '-';
@@ -82,12 +102,6 @@ function load_datatable() {
         data: "actual_end",
         render: function(data) {
           return data ? data.substring(0, 5) : '-';
-        }
-      },
-      {
-        data: "break_duration",
-        render: function(data) {
-          return data ? data + ' min' : '-';
         }
       },
       {
@@ -153,7 +167,7 @@ function load_datatable() {
     ],
     order: [[1, "desc"]],
     dom: functions.head_datatable(),
-    buttons: functions.custom_buttons_datatable([0, 1, 2, 3, 4, 5, 6, 7, 8], null), // -- Columnas para exportar (acciones excluida)
+    buttons: functions.custom_buttons_datatable([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], null), // -- Columnas para exportar (acciones excluida)
     language: {
       url: BASE_URL + "public/assets/json/languaje-es.json",
     },
@@ -264,9 +278,12 @@ function load_shift_detail(shiftId) {
             statusBadge = '<span class="badge bg-light-secondary text-secondary">' + data.data.status + '</span>';
         }
         $("#detail_status").html(statusBadge);
-        
+
+        $("#detail_job_role").text(data.data.job_role || '-');
+        $("#detail_campus").text(data.data.campus_name || '-');
         $("#detail_actual_start").text(data.data.actual_start ? data.data.actual_start.substring(0, 5) : '-');
         $("#detail_actual_end").text(data.data.actual_end ? data.data.actual_end.substring(0, 5) : '-');
+        $("#detail_work_description").text(data.data.work_description || '-');
         
         // -- Populate hours summary
         $("#detail_regular_hours").text(parseFloat(data.data.regular_hours || 0).toFixed(2) + 'h');

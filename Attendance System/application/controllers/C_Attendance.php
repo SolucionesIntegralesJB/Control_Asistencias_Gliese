@@ -350,6 +350,9 @@ class C_Attendance extends Controller {
                                 );
                                 $obj_shifts->update_break_end($bind_update);
 
+                                // Recalcular datos del turno para asegurar consistencia
+                                $obj_shifts->recalculate_shift_data($shift_id);
+
                                 // Registrar marcación
                                 $bind_record = array(
                                     'shift_id' => $shift_id,
@@ -487,6 +490,9 @@ class C_Attendance extends Controller {
                                 'status' => 'completed'
                             );
                             $obj_shifts->update_shift_end($bind_update);
+
+                            // Recalcular datos del turno para asegurar consistencia
+                            $obj_shifts->recalculate_shift_data($shift_id);
 
                             // Registrar marcación
                             $bind_record = array(

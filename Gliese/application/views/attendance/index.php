@@ -86,9 +86,11 @@
                                         <tr>
                                             <th>Empleado</th>
                                             <th>Fecha</th>
+                                            <th>Rol</th>
+                                            <th>Calle</th>
+                                            <th>Trabajo Realizado</th>
                                             <th>Entrada</th>
                                             <th>Salida</th>
-                                            <th>Break</th>
                                             <th>Horas Regulares</th>
                                             <th>Horas Extra</th>
                                             <th>Estado</th>
@@ -134,6 +136,14 @@
                                                             <div id="detail_status">-</div>
                                                         </div>
                                                         <div class="col-6">
+                                                            <label class="text-muted small mb-1">Rol</label>
+                                                            <div class="fw-semibold" id="detail_job_role">-</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="text-muted small mb-1">Calle</label>
+                                                            <div class="fw-semibold" id="detail_campus">-</div>
+                                                        </div>
+                                                        <div class="col-6">
                                                             <label class="text-muted small mb-1">Entrada</label>
                                                             <div class="fw-semibold" id="detail_actual_start">-</div>
                                                         </div>
@@ -141,6 +151,18 @@
                                                             <label class="text-muted small mb-1">Salida</label>
                                                             <div class="fw-semibold" id="detail_actual_end">-</div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Work Description Card -->
+                                            <div class="card mb-4 border-0 shadow-sm">
+                                                <div class="card-body">
+                                                    <h6 class="card-title fw-bold mb-3">
+                                                        <i class="bi bi-card-text me-2 text-primary"></i>Trabajo Realizado
+                                                    </h6>
+                                                    <div class="p-3 bg-light rounded-3">
+                                                        <p class="mb-0 text-secondary" id="detail_work_description">-</p>
                                                     </div>
                                                 </div>
                                             </div>
