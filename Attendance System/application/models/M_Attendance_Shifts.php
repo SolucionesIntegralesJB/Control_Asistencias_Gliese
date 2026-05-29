@@ -15,21 +15,21 @@ class M_Attendance_Shifts extends Model {
     public function create_shift($bind) {
         error_log("DEBUG M_Attendance_Shifts::create_shift() - Iniciado");
         error_log("DEBUG M_Attendance_Shifts::create_shift() - Bind: " . print_r($bind, true));
-        
+
         try {
-            $sql = 'INSERT INTO attendance_shifts 
-                    (employee_id, job_role_id, campus_id, shift_date, scheduled_start, scheduled_end, status)
-                    VALUES 
-                    (:employee_id, :job_role_id, :campus_id, :shift_date, :scheduled_start, :scheduled_end, :status)';
-            
+            $sql = 'INSERT INTO attendance_shifts
+                    (employee_id, job_role_id, campus_id, shift_date, scheduled_start, scheduled_end, work_description, status)
+                    VALUES
+                    (:employee_id, :job_role_id, :campus_id, :shift_date, :scheduled_start, :scheduled_end, :work_description, :status)';
+
             error_log("DEBUG M_Attendance_Shifts::create_shift() - SQL: " . $sql);
-            
+
             // ERROR CORREGIDO: PDO no tiene método perform(), usar prepare() + execute()
             $stmt = $this->pdo->prepare($sql);
             $result = $stmt->execute($bind);
-            
+
             error_log("DEBUG M_Attendance_Shifts::create_shift() - Execute result: " . ($result ? 'true' : 'false'));
-            
+
             if ($result) {
                 $shift_id = $this->pdo->lastInsertId();
                 error_log("DEBUG M_Attendance_Shifts::create_shift() - Shift ID: $shift_id");
@@ -43,7 +43,7 @@ class M_Attendance_Shifts extends Model {
             error_log("DEBUG M_Attendance_Shifts::create_shift() - PDO Exception Code: " . $e->getCode());
             $response = array('status' => 'EXCEPTION', 'result' => $e->getMessage());
         }
-        
+
         error_log("DEBUG M_Attendance_Shifts::create_shift() - Response: " . print_r($response, true));
         return $response;
     }

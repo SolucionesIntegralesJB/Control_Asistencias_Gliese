@@ -40,6 +40,35 @@ class C_Attendance extends Controller {
 
             if (isset($input['job_role_id']) && isset($input['campus_id'])) {
                 try {
+                    // -- Validar work_description
+                    if (!isset($input['work_description']) || empty(trim($input['work_description']))) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'msg' => 'La descripción del trabajo es obligatoria'
+                        );
+                        echo json_encode($json);
+                        return;
+                    }
+
+                    $work_description = trim($input['work_description']);
+                    if (strlen($work_description) < 5) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'msg' => 'La descripción del trabajo debe tener al menos 5 caracteres'
+                        );
+                        echo json_encode($json);
+                        return;
+                    }
+
+                    if (strlen($work_description) > 500) {
+                        $json = array(
+                            'status' => 'ERROR',
+                            'msg' => 'La descripción del trabajo no puede exceder 500 caracteres'
+                        );
+                        echo json_encode($json);
+                        return;
+                    }
+
                     $obj_shifts = $this->load_model('Attendance_Shifts');
                     $obj_records = $this->load_model('Attendance_Records');
 
@@ -71,6 +100,7 @@ class C_Attendance extends Controller {
                             'shift_date' => $shift_date,
                             'scheduled_start' => $scheduled_start,
                             'scheduled_end' => $scheduled_end,
+                            'work_description' => $this->functions->clean_string($work_description),
                             'status' => 'pending'
                         );
 

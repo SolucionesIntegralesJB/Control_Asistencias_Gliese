@@ -44,6 +44,12 @@
                 <option value="">Seleccione un campus...</option>
             </select>
         </div>
+
+        <div class="control-group">
+            <label for="work-description">Trabajo a realizar <span class="required">*</span>:</label>
+            <textarea id="work-description" class="form-textarea" rows="3" placeholder="Describa brevemente el trabajo que realizará durante el turno (ej: instalación de cámaras, soporte técnico, supervisión de almacén)"></textarea>
+            <small class="form-hint">Mínimo 5 caracteres, máximo 500 caracteres</small>
+        </div>
     </div>
 
     <!-- Sección de Contadores -->
@@ -351,31 +357,45 @@ function showActionMessage(message, type) {
 document.getElementById('btn-start-shift').addEventListener('click', async function() {
     const jobRoleId = document.getElementById('job-role-select').value;
     const campusId = document.getElementById('campus-select').value;
-    
+    const workDescription = document.getElementById('work-description').value;
+
     if (!jobRoleId || !campusId) {
         showActionMessage('Seleccione rol y campus', 'error');
         return;
     }
-    
+
+    if (!workDescription || workDescription.trim().length < 5) {
+        showActionMessage('La descripción del trabajo debe tener al menos 5 caracteres', 'error');
+        return;
+    }
+
+    if (workDescription.trim().length > 500) {
+        showActionMessage('La descripción del trabajo no puede exceder 500 caracteres', 'error');
+        return;
+    }
+
     this.disabled = true;
     const originalText = this.textContent;
     this.textContent = 'Procesando...';
-    
+
     try {
         const formData = new FormData();
         formData.append('job_role_id', jobRoleId);
         formData.append('campus_id', campusId);
-        
+        formData.append('work_description', workDescription.trim());
+
         const response = await fetch('<?php echo BASE_URL; ?>Attendance/start_shift', {
             method: 'POST',
             body: formData
         });
-        
+
         const data = await response.json();
-        
+
         if (data.status === 'OK') {
             showActionMessage(data.msg, 'success');
             await loadCurrentShift();
+            // Limpiar campo de descripción después de iniciar turno
+            document.getElementById('work-description').value = '';
         } else {
             showActionMessage(data.msg, 'error');
             this.disabled = false;

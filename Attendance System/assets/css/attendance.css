@@ -173,6 +173,38 @@
     border-color: #667eea;
 }
 
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-textarea::placeholder {
+    color: #999;
+}
+
+.required {
+    color: #f5576c;
+    font-weight: 700;
+}
+
+.form-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
 .attendance-status {
     background: white;
     padding: 20px;
