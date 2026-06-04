@@ -37,33 +37,48 @@
                                     <div class="row">
                                         <div class="col-md-3 mb-1">
                                             <label class="form-label">Empleado</label>
-                                            <select id="filter_employee" class="form-select select2" data-placeholder="Todos">
-                                                <option value="">Todos</option>
-                                            </select>
+                                            <div class="input-group">
+                                                <select id="filter_employee" class="form-select select2-filter" data-placeholder="Todos">
+                                                    <option value="">Todos</option>
+                                                </select>
+                                                <button class="btn btn-outline-secondary clear-filter" data-target="filter_employee" type="button">×</button>
+                                            </div>
                                         </div>
                                         <div class="col-md-2 mb-1">
                                             <label class="form-label">Fecha Inicio</label>
-                                            <input type="date" id="filter_start_date" class="form-control">
+                                            <div class="input-group">
+                                                <input type="date" id="filter_start_date" class="form-control">
+                                                <button class="btn btn-outline-secondary clear-filter" data-target="filter_start_date" type="button">×</button>
+                                            </div>
                                         </div>
                                         <div class="col-md-2 mb-1">
                                             <label class="form-label">Fecha Fin</label>
-                                            <input type="date" id="filter_end_date" class="form-control">
+                                            <div class="input-group">
+                                                <input type="date" id="filter_end_date" class="form-control">
+                                                <button class="btn btn-outline-secondary clear-filter" data-target="filter_end_date" type="button">×</button>
+                                            </div>
                                         </div>
                                         <div class="col-md-2 mb-1">
                                             <label class="form-label">Estado</label>
-                                            <select id="filter_status" class="form-select">
-                                                <option value="">Todos</option>
-                                                <option value="pending">Pendiente</option>
-                                                <option value="in_progress">En Progreso</option>
-                                                <option value="completed">Completado</option>
-                                                <option value="cancelled">Cancelado</option>
-                                            </select>
+                                            <div class="input-group">
+                                                <select id="filter_status" class="form-select">
+                                                    <option value="">Todos</option>
+                                                    <option value="pending">Pendiente</option>
+                                                    <option value="in_progress">En Progreso</option>
+                                                    <option value="completed">Completado</option>
+                                                    <option value="cancelled">Cancelado</option>
+                                                </select>
+                                                <button class="btn btn-outline-secondary clear-filter" data-target="filter_status" type="button">×</button>
+                                            </div>
                                         </div>
                                         <div class="col-md-2 mb-1">
                                             <label class="form-label">Sede</label>
-                                            <select id="filter_campus" class="form-select select2" data-placeholder="Todas">
-                                                <option value="">Todas</option>
-                                            </select>
+                                            <div class="input-group">
+                                                <select id="filter_campus" class="form-select select2-filter" data-placeholder="Todas">
+                                                    <option value="">Todas</option>
+                                                </select>
+                                                <button class="btn btn-outline-secondary clear-filter" data-target="filter_campus" type="button">×</button>
+                                            </div>
                                         </div>
                                         <div class="col-md-1 mb-1 d-flex align-items-end">
                                             <button id="btn_filter" class="btn btn-primary w-100">
@@ -401,5 +416,16 @@
         .timeline-description {
             font-size: 0.85rem;
             color: #6c757d;
+        }
+        .clear-filter {
+            padding: 0.375rem 0.75rem;
+            font-size: 1.2rem;
+            line-height: 1;
+            border-left: none;
+        }
+        .clear-filter:hover {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
         }
     </style>

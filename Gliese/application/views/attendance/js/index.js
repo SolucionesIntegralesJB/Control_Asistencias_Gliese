@@ -187,7 +187,7 @@ function load_datatable() {
 // --
 function load_employees() {
   // --
-  $.ajax({
+  return $.ajax({
     url: BASE_URL + "Attendance/get_employees_list",
     type: "GET",
     dataType: "json",
@@ -217,7 +217,7 @@ function load_employees() {
 // --
 function load_campus() {
   // --
-  $.ajax({
+  return $.ajax({
     url: BASE_URL + "Attendance/get_campus_list",
     type: "GET",
     dataType: "json",
@@ -426,17 +426,41 @@ function update_shift() {
 $(document).ready(function () {
   // --
   load_datatable();
-  load_employees();
-  load_campus();
-  
-  // -- Initialize select2
-  $(".select2").select2({
-    dropdownParent: $("#attendance"),
-    width: "100%",
+
+  // -- Load filter data first, then initialize Select2
+  $.when(load_employees(), load_campus()).done(function() {
+    // -- Initialize select2 after data is loaded
+    $(".select2-filter").select2({
+      width: "100%",
+      dropdownAutoWidth: false,
+      closeOnSelect: true
+    });
   });
-  
+
+  // -- Debug: Add change event listeners to verify if events fire
+  $("#filter_employee").on("change", function() {
+    console.log('DEBUG: filter_employee changed:', $(this).val());
+  });
+  $("#filter_campus").on("change", function() {
+    console.log('DEBUG: filter_campus changed:', $(this).val());
+  });
+  $("#filter_status").on("change", function() {
+    console.log('DEBUG: filter_status changed:', $(this).val());
+  });
+
   // -- Filter button click
   $("#btn_filter").on("click", function () {
+    refresh_datatable();
+  });
+
+  // -- Clear filter button click
+  $(".clear-filter").on("click", function () {
+    var targetId = $(this).data("target");
+    $("#" + targetId).val("").trigger("change");
+    // For Select2, also need to trigger the select2 change
+    if ($("#" + targetId).hasClass("select2-filter")) {
+      $("#" + targetId).select2("val", "").trigger("change");
+    }
     refresh_datatable();
   });
   

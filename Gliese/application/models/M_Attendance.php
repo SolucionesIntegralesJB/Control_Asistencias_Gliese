@@ -59,10 +59,9 @@ class M_Attendance extends Model
             if (!empty($bind['status'])) {
                 $sql .= ' AND s.status = :status';
             }
-            // -- Temporarily disable campus filter
-            // if (!empty($bind['campus_id'])) {
-            //     $sql .= ' AND s.campus_id = :campus_id';
-            // }
+            if (!empty($bind['campus_id'])) {
+                $sql .= ' AND s.campus_id = :campus_id';
+            }
 
             // -- Order and limit
             $sql .= ' ORDER BY s.shift_date DESC, s.actual_start DESC';
@@ -539,19 +538,20 @@ class M_Attendance extends Model
         return $response;
     }
 
-    // -- Get employees list for filter
+    // -- Get employees list for filter (only those with attendance records)
     public function get_employees_list()
     {
         // --
         try {
             // --
-            $sql = 'SELECT 
-                    id,
-                    name,
-                    position
-                FROM employees
-                WHERE status = 1
-                ORDER BY name ASC';
+            $sql = 'SELECT DISTINCT
+                    e.id,
+                    e.name,
+                    e.position
+                FROM employees e
+                INNER JOIN attendance_shifts s ON e.id = s.employee_id
+                WHERE e.status = 1
+                ORDER BY e.name ASC';
             // --
             $result = $this->pdo->fetchAll($sql);
             // --
@@ -570,18 +570,19 @@ class M_Attendance extends Model
         return $response;
     }
 
-    // -- Get campus list for filter
+    // -- Get campus list for filter (only those with attendance records)
     public function get_campus_list()
     {
         // --
         try {
             // --
-            $sql = 'SELECT 
-                    id,
-                    description
-                FROM campus
-                WHERE status = 1
-                ORDER BY description ASC';
+            $sql = 'SELECT DISTINCT
+                    c.id,
+                    c.description
+                FROM campus c
+                INNER JOIN attendance_shifts s ON c.id = s.campus_id
+                WHERE c.status = 1
+                ORDER BY c.description ASC';
             // --
             $result = $this->pdo->fetchAll($sql);
             // --

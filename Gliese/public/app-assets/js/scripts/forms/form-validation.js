@@ -18,6 +18,10 @@ $(function () {
   // select2
   select.each(function () {
     var $this = $(this);
+    // Skip if already initialized by module-specific code
+    if ($this.hasClass('select2-hidden-accessible')) {
+      return;
+    }
     $this.wrap('<div class="position-relative"></div>');
     $this
       .select2({
@@ -25,7 +29,11 @@ $(function () {
         dropdownParent: $this.parent()
       })
       .change(function () {
-        $(this).valid();
+        // Only call .valid() if the element is inside a validated form
+        var form = $(this).closest('form');
+        if (form.length && form.data('validator')) {
+          $(this).valid();
+        }
       });
   });
 

@@ -8245,3 +8245,255 @@ Stack trace:
 
 )
 
+[03-Jun-2026 00:58:59 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 00:58:59 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => ERROR
+    [result] => Array
+        (
+        )
+
+)
+
+[03-Jun-2026 00:59:12 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Iniciado
+[03-Jun-2026 00:59:12 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Bind: Array
+(
+    [employee_id] => 111
+    [job_role_id] => 2
+    [campus_id] => 2
+    [shift_date] => 2026-06-03
+    [scheduled_start] => 00:59:12
+    [scheduled_end] => 08:59:12
+    [work_description] => Prueba de Pago
+    [status] => pending
+)
+
+[03-Jun-2026 00:59:12 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - SQL: INSERT INTO attendance_shifts
+                    (employee_id, job_role_id, campus_id, shift_date, scheduled_start, scheduled_end, work_description, status)
+                    VALUES
+                    (:employee_id, :job_role_id, :campus_id, :shift_date, :scheduled_start, :scheduled_end, :work_description, :status)
+[03-Jun-2026 00:59:12 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Execute result: true
+[03-Jun-2026 00:59:12 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Shift ID: 15
+[03-Jun-2026 00:59:12 America/Lima] DEBUG M_Attendance_Shifts::create_shift() - Response: Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [shift_id] => 15
+        )
+
+)
+
+[03-Jun-2026 00:59:12 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 00:59:12 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 0
+            [regular_hours] => 0.00
+            [overtime_hours] => 0.00
+            [status] => in_progress
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 00:59:12
+        )
+
+)
+
+[03-Jun-2026 00:59:29 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 00:59:29 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 0
+            [regular_hours] => 0.00
+            [overtime_hours] => 0.00
+            [status] => in_progress
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 00:59:12
+        )
+
+)
+
+[03-Jun-2026 00:59:59 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 00:59:59 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 0
+            [regular_hours] => 0.00
+            [overtime_hours] => 0.00
+            [status] => in_progress
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 00:59:12
+        )
+
+)
+
+[03-Jun-2026 01:00:29 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 01:00:29 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 0
+            [regular_hours] => 0.00
+            [overtime_hours] => 0.00
+            [status] => in_progress
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 00:59:12
+        )
+
+)
+
+[03-Jun-2026 01:00:59 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 01:00:59 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 0
+            [regular_hours] => 0.00
+            [overtime_hours] => 0.00
+            [status] => in_progress
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 00:59:12
+        )
+
+)
+
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: actual_start = 2026-06-03 00:59:12
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: shift_date = 2026-06-03
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: current_time = 01:01:17
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: break_duration = 0
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: start_timestamp = 1780466352
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: end_timestamp = 1780466477
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: total_worked_minutes (antes de validación) = 2
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: total_worked_hours = 0.033333333333333
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: regular_hours = 0.033333333333333
+[03-Jun-2026 01:01:17 America/Lima] DEBUG end_shift: overtime_hours = 0
+[03-Jun-2026 01:01:18 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 01:01:18 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 2026-06-03 01:01:17
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 2
+            [regular_hours] => 0.03
+            [overtime_hours] => 0.00
+            [status] => completed
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 01:01:17
+        )
+
+)
+
+[03-Jun-2026 01:01:29 America/Lima] DEBUG get_current_shift: employee_id = 111, shift_date = 2026-06-03
+[03-Jun-2026 01:01:29 America/Lima] DEBUG get_current_shift: shift response = Array
+(
+    [status] => OK
+    [result] => Array
+        (
+            [id] => 15
+            [employee_id] => 111
+            [job_role_id] => 2
+            [campus_id] => 2
+            [shift_date] => 2026-06-03
+            [scheduled_start] => 00:59:12
+            [scheduled_end] => 08:59:12
+            [actual_start] => 2026-06-03 00:59:12
+            [actual_end] => 2026-06-03 01:01:17
+            [break_start] => 
+            [break_end] => 
+            [break_duration] => 0
+            [total_worked_minutes] => 2
+            [regular_hours] => 0.03
+            [overtime_hours] => 0.00
+            [status] => completed
+            [notes] => 
+            [created_at] => 2026-06-03 00:59:12
+            [updated_at] => 2026-06-03 01:01:17
+        )
+
+)
+

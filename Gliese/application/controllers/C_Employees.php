@@ -38,7 +38,15 @@ class C_Employees extends Controller
             // --
             $obj = $this->load_model('Employees');
             // --
-            $response = $obj->get_employees();
+            $bind = array();
+            
+            // -- Apply status filter if provided
+            if (!empty($input['status'])) {
+                $bind['status'] = intval($input['status']);
+            }
+            
+            // --
+            $response = $obj->get_employees($bind);
             // --
             switch ($response['status']) {
                     // --
@@ -504,6 +512,91 @@ class C_Employees extends Controller
                             'status' => 'ERROR',
                             'type' => 'warning',
                             'msg' => 'No fue posible desactivar el registro, verificar.',
+                            'data' => array(),
+                        );
+                        // --
+                        break;
+
+                    case 'EXCEPTION':
+                        // --
+                        $json = array(
+                            'status' => 'ERROR',
+                            'type' => 'error',
+                            'msg' => $response['result']->getMessage(),
+                            'data' => array()
+                        );
+                        // --
+                        break;
+                }
+            } else {
+                // --
+                $json = array(
+                    'status' => 'ERROR',
+                    'type' => 'warning',
+                    'msg' => 'No se enviaron los campos necesarios, verificar.',
+                    'data' => array()
+                );
+            }
+        } else {
+            // --
+            $json = array(
+                'status' => 'ERROR',
+                'type' => 'error',
+                'msg' => 'Método no permitido.',
+                'data' => array()
+            );
+        }
+
+        // --
+        header('Content-Type: application/json');
+        echo json_encode($json);
+    }
+
+    // --
+    public function reactivate_employees()
+    {
+        // --
+        $this->functions->validate_session($this->segment->get('isActive'));
+        // --
+        $request = $_SERVER['REQUEST_METHOD'];
+        // --
+        if ($request === 'POST') {
+            // --
+            $input = json_decode(file_get_contents('php://input'), true);
+            if (empty($input)) {
+                $input = filter_input_array(INPUT_POST);
+            }
+            // --
+            if (!empty($input['id_employees'])) {
+                // --
+                $id_employees = $this->functions->clean_string($input['id_employees']);
+                // --
+                $bind = array(
+                    'id_employees' => $id_employees
+                );
+                // --
+                $obj = $this->load_model('Employees');
+                $response = $obj->reactivate_employees($bind);
+                // --
+                switch ($response['status']) {
+                        // --
+                    case 'OK':
+                        // --
+                        $json = array(
+                            'status' => 'OK',
+                            'type' => 'success',
+                            'msg' => 'Empleado reactivado con éxito.',
+                            'data' => array()
+                        );
+                        // --
+                        break;
+
+                    case 'ERROR':
+                        // --
+                        $json = array(
+                            'status' => 'ERROR',
+                            'type' => 'warning',
+                            'msg' => 'No fue posible reactivar el empleado, verificar.',
                             'data' => array(),
                         );
                         // --

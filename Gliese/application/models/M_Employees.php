@@ -9,7 +9,7 @@ class M_Employees extends Model
     }
 
     // --
-    public function get_employees()
+    public function get_employees($bind = array())
     {
         // --
         try {
@@ -27,12 +27,22 @@ class M_Employees extends Model
                     e.role_person_id,
                     e.work_area,
                     e.position,
-                    e.salary
+                    e.salary,
+                    e.status
                     FROM employees e
                     INNER JOIN document_type dt ON dt.id = e.document_type_id
-                    WHERE e.status = 1';
+                    WHERE 1=1';
+            
+            // -- Apply status filter if provided
+            if (!empty($bind['status'])) {
+                $sql .= ' AND e.status = :status';
+            }
+            
+            // -- Order by status (active first, then inactive), then by name
+            $sql .= ' ORDER BY e.status DESC, e.name ASC';
+            
             // --
-            $result = $this->pdo->fetchAll($sql);
+            $result = $this->pdo->fetchAll($sql, $bind);
             // --
             if ($result) {
                 // --
@@ -243,6 +253,34 @@ class M_Employees extends Model
             if ($result) {
                 // --
                 $response = array('status' => 'OK', 'result' => $result);
+            } else {
+                // --
+                $response = array('status' => 'ERROR', 'result' => array());
+            }
+        } catch (PDOException $e) {
+            // --
+            $response = array('status' => 'EXCEPTION', 'result' => $e);
+        }
+        // --
+        return $response;
+    }
+
+    // --
+    public function reactivate_employees($bind)
+    {
+        // --
+        try {
+            // --
+            $sql = 'UPDATE employees
+                SET
+                    status = 1
+                WHERE id = :id_employees';
+            // --
+            $result = $this->pdo->perform($sql, $bind);
+            // --
+            if ($result) {
+                // --
+                $response = array('status' => 'OK', 'result' => array());
             } else {
                 // --
                 $response = array('status' => 'ERROR', 'result' => array());

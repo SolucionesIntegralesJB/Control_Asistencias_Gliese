@@ -29,6 +29,32 @@
                     </div>
                     <!-- /Header title-->
 
+                    <!-- Filters -->
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 mb-1">
+                                            <label class="form-label">Estado</label>
+                                            <select id="filter_status" class="form-select">
+                                                <option value="">Todos</option>
+                                                <option value="1">Activos</option>
+                                                <option value="0">Inactivos</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1 mb-1 d-flex align-items-end">
+                                            <button id="btn_filter" class="btn btn-primary w-100">
+                                                <i class="bi bi-filter"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Filters -->
+
                     <!-- Table -->
                     <div class="row">
                         <div class="col-12">
@@ -37,11 +63,10 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 200px;">Nombre</th>
-                                            <th>Tipo de documento</th>
                                             <th>Nº de documento</th>
-                                            <th>Celular</th>
                                             <th>Direccion</th>
                                             <th>Email</th>
+                                            <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>

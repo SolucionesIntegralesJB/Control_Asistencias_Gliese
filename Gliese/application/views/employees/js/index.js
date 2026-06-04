@@ -22,39 +22,79 @@ function load_datatable() {
     ajax: {
       url: BASE_URL + "Employees/get_employees",
       cache: false,
+      data: function (d) {
+        // -- Add status filter to AJAX request
+        let statusFilter = $("#filter_status").val();
+        if (statusFilter !== "") {
+          d.status = statusFilter;
+        }
+      },
     },
     columns: [
       { data: "name" },
-      { data: "document_description" },
       { data: "document_number" },
-      { data: "phone" },
       { data: "address" },
       { data: "email" },
+      {
+        data: "status",
+        type: "num",
+        class: "text-center",
+        render: function (data, type, row, meta) {
+          // --
+          if (type === 'display' || type === 'filter') {
+            if (data == 1) {
+              return '<span class="badge bg-success">Activo</span>';
+            } else {
+              return '<span class="badge bg-danger">Inactivo</span>';
+            }
+          }
+          // -- For sorting and type detection, return the numeric value
+          return data;
+        },
+      },
       {
         class: "text-center",
         render: function (data, type, row, meta) {
           // --
-          return (
-            '<button class="btn btn-sm btn-info btn-round btn-icon btn_update" data-process-key="' +
+          let actions = '';
+          // --
+          actions += '<button class="btn btn-sm btn-info btn-round btn-icon btn_update" data-process-key="' +
             row.id_employees +
             '">' +
             feather.icons["edit"].toSvg({ class: "font-small-4" }) +
-            "</button>" +
-            " " +
-            '<button  class="btn btn-sm btn-danger btn-round btn-icon btn_delete" data-process-key="' +
-            row.id_employees +
-            '">' +
-            feather.icons["trash-2"].toSvg({ class: "font-small-4" }) +
-            "</button>"
-          );
+            "</button> ";
+          // --
+          if (row.status == 1) {
+            // -- Active: show delete button
+            actions += '<button class="btn btn-sm btn-danger btn-round btn-icon btn_delete" data-process-key="' +
+              row.id_employees +
+              '">' +
+              feather.icons["trash-2"].toSvg({ class: "font-small-4" }) +
+              "</button>";
+          } else {
+            // -- Inactive: show reactivate button
+            actions += '<button class="btn btn-sm btn-success btn-round btn-icon btn_reactivate" data-process-key="' +
+              row.id_employees +
+              '">' +
+              feather.icons["refresh-cw"].toSvg({ class: "font-small-4" }) +
+              "</button>";
+          }
+          // --
+          return actions;
         },
       },
     ],
-    order: [[0, "asc"]],
+    order: [[4, "desc"], [0, "asc"]],
     dom: functions.head_datatable(),
-    buttons: functions.custom_buttons_datatable([6], "#create_employees_modal"), // -- Columnas para exportar PDF (acciones excluida)
+    buttons: functions.custom_buttons_datatable([4], "#create_employees_modal"), // -- Columnas para exportar PDF (acciones excluida)
     language: {
       url: BASE_URL + "public/assets/json/languaje-es.json",
+    },
+    createdRow: function (row, data, dataIndex) {
+      // -- Dim inactive employee rows
+      if (data.status == 0) {
+        $(row).addClass('table-secondary');
+      }
     },
   });
 
@@ -312,6 +352,48 @@ $(document).on("click", ".btn_delete", function () {
   });
 });
 
+// --
+$(document).on("click", ".btn_reactivate", function () {
+  // --
+  let value = $(this).attr("data-process-key");
+  // --
+  let params = { id_employees: value };
+  // --
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¿Deseas reactivar este empleado?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Si, reactivar!",
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-outline-secondary ms-1",
+    },
+    buttonsStyling: false,
+    preConfirm: (_) => {
+      return $.ajax({
+        url: BASE_URL + "Employees/reactivate_employees",
+        type: "POST",
+        data: params,
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+          // --
+          functions.toast_message(data.type, data.msg, data.status);
+          // --
+          if (data.status === "OK") {
+            // --
+            refresh_datatable();
+          }
+        },
+      });
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+    }
+  });
+});
+
 $(document).ready(function () {
   $("#document_number").on("input", function () {
     let documentType = $("#document_type").val();
@@ -400,3 +482,8 @@ get_role();
 get_document_types();
 //--
 load_datatable();
+
+// -- Filter button click
+$("#btn_filter").on("click", function () {
+  refresh_datatable();
+});
